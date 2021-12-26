@@ -2,11 +2,15 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
+    public Text Healthbar;
+    public float maxHealth = 10;
+    private float currentHealth;
 
     Vector2 movemnt;
     Vector2 mousePos;
@@ -15,7 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        
         view = GetComponent<PhotonView>();
+       
     }
     void Update()
     {
@@ -26,7 +32,14 @@ public class PlayerMovement : MonoBehaviour
             transform.position += (Vector3)moveAmount;
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             changeRotation();
+
         }
+        if (Health.currentHealth<=0)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
+        
+
     }
     void changeRotation()
     {
@@ -38,4 +51,6 @@ public class PlayerMovement : MonoBehaviour
         // Quaternion rotation = Quaternion.Euler(rotationVector);
         // transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 720f * Time.deltaTime);
     }
+    
+
 }
