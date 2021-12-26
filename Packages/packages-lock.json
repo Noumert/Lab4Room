@@ -20,16 +20,17 @@
     "com.unity.feature.2d": {
       "version": "1.0.0",
       "depth": 0,
-      "source": "builtin",
+      "source": "registry",
       "dependencies": {
-        "com.unity.2d.animation": "7.0.2",
-        "com.unity.2d.pixel-perfect": "5.0.1",
-        "com.unity.2d.psdimporter": "6.0.1",
-        "com.unity.2d.sprite": "1.0.0",
-        "com.unity.2d.spriteshape": "7.0.3",
-        "com.unity.2d.tilemap": "1.0.0",
-        "com.unity.2d.tilemap.extras": "2.2.1"
-      }
+        "com.unity.2d.animation": "default",
+        "com.unity.2d.pixel-perfect": "default",
+        "com.unity.2d.psdimporter": "default",
+        "com.unity.2d.sprite": "default",
+        "com.unity.2d.spriteshape": "default",
+        "com.unity.2d.tilemap": "default",
+        "com.unity.2d.tilemap.extras": "default"
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
       "version": "3.0.7",

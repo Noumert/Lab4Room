@@ -24,19 +24,18 @@ public class PlayerMovement : MonoBehaviour
             Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             Vector2 moveAmount = moveInput.normalized * moveSpeed * Time.deltaTime;
             transform.position += (Vector3)moveAmount;
-            mousePos = Camera.current.ScreenToWorldPoint(Input.mousePosition);
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            changeRotation();
         }
-
-        /* movemnt.x = Input.GetAxisRaw("Horizontal");
-         movemnt.y = Input.GetAxisRaw("Vertical");
-
-         mousePos = Camera.current.ScreenToWorldPoint(Input.mousePosition);*/
     }
-    void FixedUpdate()
+    void changeRotation()
     {
         rb.MovePosition(rb.position + movemnt * moveSpeed * Time.fixedDeltaTime);
         Vector2 lookDir = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         rb.rotation = angle;
+        // Vector3 rotationVector = new Vector3(0, angle, 0);
+        // Quaternion rotation = Quaternion.Euler(rotationVector);
+        // transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 720f * Time.deltaTime);
     }
 }

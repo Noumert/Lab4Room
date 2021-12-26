@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7346562601287555537}
   - component: {fileID: 6991210321042612441}
   - component: {fileID: 3721160494095635700}
+  - component: {fileID: 7317949713264072579}
   - component: {fileID: 3829923525449006514}
-  - component: {fileID: 127369818035509460}
   - component: {fileID: 124168744383561455}
   m_Layer: 1
   m_Name: playerBody
@@ -124,6 +124,20 @@ CircleCollider2D:
   m_Offset: {x: -0.54861104, y: 0}
   serializedVersion: 2
   m_Radius: 0.6140714
+--- !u!114 &7317949713264072579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2898488095768927344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7777600bd1ebf13449d95692789b8cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 25
+  rb: {fileID: 6991210321042612441}
 --- !u!114 &3829923525449006514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,20 +161,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &127369818035509460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2898488095768927344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f9f7ca943ccc1145a706c271092e752, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 25
-  rb: {fileID: 6991210321042612441}
 --- !u!114 &124168744383561455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,9 +185,9 @@ MonoBehaviour:
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
   m_RotationModel:
-    SynchronizeEnabled: 0
-    InterpolateOption: 1
-    InterpolateRotateTowardsSpeed: 180
+    SynchronizeEnabled: 1
+    InterpolateOption: 2
+    InterpolateRotateTowardsSpeed: 5760
     InterpolateLerpSpeed: 5
   m_ScaleModel:
     SynchronizeEnabled: 0
