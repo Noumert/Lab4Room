@@ -33,6 +33,7 @@ public class SpawnPlayers : MonoBehaviour
             {
                 isGameStart = true;
                 PhotonNetwork.CurrentRoom.IsOpen = false;
+                timeLeft = 10;
             }
         }
         Collider2D[] collidersArray = Physics2D
@@ -55,8 +56,14 @@ public class SpawnPlayers : MonoBehaviour
             {
                 PlayerMovement playerMovement = winPlayer.GetComponent<PlayerMovement>();
                 WinText.text = "Переміг гравець " + playerMovement.textName.text;
-                PhotonNetwork.CurrentRoom.IsOpen = true; 
-                isGameStart = false;
+                timeLeft -= Time.deltaTime;
+                if (timeLeft < 0)
+                {
+                    PhotonNetwork.CurrentRoom.IsOpen = true;
+                    isGameStart = false;
+                    timeLeft = 10;
+                    PhotonNetwork.LeaveRoom();
+                }
             }
         }
     }
