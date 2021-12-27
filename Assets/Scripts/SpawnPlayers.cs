@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Pun.Demo.Cockpit;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SpawnPlayers : MonoBehaviour
 {
     public GameObject player;
     public float minX, minY, maxX, maxY;
-    
+    public Text WinText;
     public float timeLeft = 10f;
     public static bool isGameStart = false;
     public Vector2[] vectorArray = new Vector2[4] { new Vector2(-135, 64), new Vector2(145, 73), new Vector2(141, -58), new Vector2(-148, -65) };
@@ -33,12 +35,30 @@ public class SpawnPlayers : MonoBehaviour
                 PhotonNetwork.CurrentRoom.IsOpen = false;
             }
         }
-        if(countPlayer==1 && isGameStart==true)
+        Collider2D[] collidersArray = Physics2D
+            .OverlapCircleAll(transform.position, 99999);
+        if (isGameStart==true)
         {
-            SceneManager.LoadScene("Win");
-            //оно не так работает
+            int playerCount = 0;
+            Collider2D winPlayer = new Collider2D();
+            for (int i = 0; i < collidersArray.Length; i++)
+            {
+                if (collidersArray[i].tag == "Player")
+                {
+                    playerCount++;
+                    winPlayer = collidersArray[i];
+                }
+                
+            }
+
+            if (playerCount == 1)
+            {
+                PlayerMovement playerMovement = winPlayer.GetComponent<PlayerMovement>();
+                WinText.text = "Переміг гравець " + playerMovement.textName.text;
+                PhotonNetwork.CurrentRoom.IsOpen = true; 
+                isGameStart = false;
+            }
         }
-        
     }
 
 

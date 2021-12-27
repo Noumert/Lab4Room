@@ -1,9 +1,12 @@
+using System;
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Realtime;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,7 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public Text Healthbar;
     public float maxHealth = 10;
     public float currentHealth;
-
+    public Text textName;
+    
     Vector2 movemnt;
     Vector2 mousePos;
 
@@ -20,10 +24,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        
         view = GetComponent<PhotonView>();
         currentHealth = maxHealth;
         Healthbar.text = maxHealth + "/" + currentHealth;
+        textName.text = view.Owner.NickName;
     }
     void Update()
     {
@@ -36,16 +40,7 @@ public class PlayerMovement : MonoBehaviour
             changeRotation();
 
         }
-
-        Healthbar.text = maxHealth + "/" + currentHealth; 
-        ///Debug.Log(currentHealth);
-        if (currentHealth<=0)
-        {
-            PhotonNetwork.Destroy(gameObject);
-            PhotonNetwork.LeaveRoom();
-
-        }
-
+        Healthbar.text = maxHealth + "/" + currentHealth;
     }
     void changeRotation()
     {
@@ -53,10 +48,6 @@ public class PlayerMovement : MonoBehaviour
         Vector2 lookDir = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         rb.rotation = angle;
-        // Vector3 rotationVector = new Vector3(0, angle, 0);
-        // Quaternion rotation = Quaternion.Euler(rotationVector);
-        // transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 720f * Time.deltaTime);
     }
-    
 
 }

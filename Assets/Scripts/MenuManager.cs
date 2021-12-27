@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
@@ -9,7 +10,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
 {
     public InputField createInput;
     public InputField joinInput;
-
+    public InputField inputName;
     public void CreateRoom()
     {
         RoomOptions roomOptions = new RoomOptions();
@@ -26,4 +27,17 @@ public class MenuManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LoadLevel("Game");
     }
+    public void SaveName()
+    {
+        PlayerPrefs.SetString("name", inputName.text);
+        PhotonNetwork.NickName = inputName.text;
+    }
+
+    public void Start()
+    {
+        
+        inputName.text = PlayerPrefs.GetString("name");
+        PhotonNetwork.NickName = inputName.text;
+    }
+    
 }

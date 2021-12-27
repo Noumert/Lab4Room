@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Transfertomenu : MonoBehaviour
 {
-    public void NextLevel(int sceneNumber)
+    public void LoadMenu()
     {
-        SceneManager.LoadScene(sceneNumber);
+        SceneManager.LoadScene("Menu");
     }
 }

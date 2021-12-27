@@ -32,7 +32,6 @@ public class Bullet : MonoBehaviour
             if (playermovement.currentHealth <= 0)
             {
                 PhotonNetwork.Destroy(other.gameObject);
-                PhotonNetwork.LeaveRoom();
             }
         }
 
