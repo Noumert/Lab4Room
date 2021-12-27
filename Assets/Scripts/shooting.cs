@@ -32,7 +32,7 @@ public class shooting : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            if (view.IsMine)
+            if (view.IsMine && SpawnPlayers.isGameStart == true)
             {
                 Shoot();
             }

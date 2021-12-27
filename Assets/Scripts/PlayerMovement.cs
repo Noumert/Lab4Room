@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Text Healthbar;
     public float maxHealth = 10;
-    private float currentHealth;
+    public float currentHealth;
 
     Vector2 movemnt;
     Vector2 mousePos;
@@ -21,7 +21,8 @@ public class PlayerMovement : MonoBehaviour
     {
         
         view = GetComponent<PhotonView>();
-       
+        currentHealth = maxHealth;
+        Healthbar.text = maxHealth + "/" + currentHealth;
     }
     void Update()
     {
@@ -29,16 +30,18 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             Vector2 moveAmount = moveInput.normalized * moveSpeed * Time.deltaTime;
-            transform.position += (Vector3)moveAmount;
+            transform.position += (Vector3) moveAmount;
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             changeRotation();
 
         }
-        if (Health.currentHealth<=0)
+
+        Healthbar.text = maxHealth + "/" + currentHealth; 
+        ///Debug.Log(currentHealth);
+        if (currentHealth<=0)
         {
             PhotonNetwork.Destroy(gameObject);
         }
-        
 
     }
     void changeRotation()

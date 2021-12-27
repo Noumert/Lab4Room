@@ -1,6 +1,7 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Realtime;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -20,11 +21,16 @@ public class Bullet : MonoBehaviour
     {
         if(other.tag=="Wall")
         {
+            Debug.Log("CHEEEEEEL STENAAAAAAAAAAA");
             PhotonNetwork.Destroy(gameObject);
         }
         if(other.tag=="Player")
         {
-            Health.currentHealth -= 2;
+            Debug.Log("CHEEEEEEL POPAAAAAAAAAAAL");
+            PlayerMovement playermovement = other.GetComponent<PlayerMovement>();
+            playermovement.currentHealth -= 2;
+            //PhotonNetwork.Destroy(gameObject);
+            if(playermovement.currentHealth<=0) PhotonNetwork.Destroy(other.gameObject);
         }
  
        
