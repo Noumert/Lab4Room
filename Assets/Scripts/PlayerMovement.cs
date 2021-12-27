@@ -2,6 +2,7 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
@@ -41,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
         if (currentHealth<=0)
         {
             PhotonNetwork.Destroy(gameObject);
+            PhotonNetwork.LeaveRoom();
+
         }
 
     }

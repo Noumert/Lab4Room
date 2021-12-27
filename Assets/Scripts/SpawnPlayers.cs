@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnPlayers : MonoBehaviour
 {
@@ -32,6 +33,12 @@ public class SpawnPlayers : MonoBehaviour
                 PhotonNetwork.CurrentRoom.IsOpen = false;
             }
         }
+        if(countPlayer==1 && isGameStart==true)
+        {
+            SceneManager.LoadScene("Win");
+            //оно не так работает
+        }
+        
     }
 
 
