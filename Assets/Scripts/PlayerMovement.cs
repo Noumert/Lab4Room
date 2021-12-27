@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     {
         view = GetComponent<PhotonView>();
         currentHealth = maxHealth;
-        Healthbar.text = maxHealth + "/" + currentHealth;
+        if(view.IsMine) Healthbar.text = maxHealth + "/" + currentHealth;
         textName.text = view.Owner.NickName;
     }
     void Update()
@@ -38,9 +38,8 @@ public class PlayerMovement : MonoBehaviour
             transform.position += (Vector3) moveAmount;
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             changeRotation();
-
+            Healthbar.text = maxHealth + "/" + currentHealth;
         }
-        Healthbar.text = maxHealth + "/" + currentHealth;
     }
     void changeRotation()
     {
